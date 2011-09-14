@@ -1,0 +1,25 @@
+1. git init
+说明： 为项目建立git版本控制库(本地)，一个项目只须执行一次，在项目根目录执行此命令。执行后，会自动添加.git隐藏目录用于存放版本库数据。
+
+2. git status
+说明： 查看当前版本控制的变化信息，包括哪些文件尚未跟踪，哪些文件已经修改，哪些文件已经提交到staging area等等
+
+3. git add
+说明： 将文件或目录加入到版本控制中。"git add . "命令会以递归方式搜寻所有子目录中的文件，"git add *"仅搜寻当前目录中的内容。add后的文件将进入staging area,等待commit指令提交到一下版本快照。
+
+4. git commit
+说明： 将staging area的文件全部提交到下一版本快照。被版本控制跟踪的文件，在修改后，如果不使用add命令提交到staging area，则git commit命令不会将其提交到下一版本快照。如果需要有类似svn那样的commit方式，也就是，文件修改后，可以通过commit命令直接提交到下一版本快照，那么使用命令"git commit -a"
+
+5. git diff
+说明： 显示当前工作目录的文件和staging area中文件的差异。命令"git diff --cached"用于比较staging area中文件和上一版本快照中文件的差异。命令"git diff HEAD"用于直接比较工作目录中文件与上一版本快照中文件的差异，跳过staging area。
+
+6. git reset HEAD -- <file>
+说明： 将指定文件从staging area中回退到工作目录。例如，在staging area 中有一个文件hello.py。执行命令"git reset HEAD -- hello.py"后，这个文件就不在staging area中，而是显示为已修改但未提交到staging area的状态。
+
+7. git checkout -- <file>
+说明： 取消对指定文件的修改内容，并使其还原到上一版本快照的内容。
+
+8. git rm <file>
+说明： 在working directory删除指定文件，并将文件的删除添加到版本控制中，在运行commit指令后，这个文件将不再出现在文件跟踪列表中。如果在命令行中，直接使用rm指令删除文件。那么仅是在working directory中删除了文件，而git的文件跟踪列表中，仍然有对这个文件的跟踪。
+如果想在本地保留文件，而在git的文件跟踪中将指定文件删除，那么就使用"git rm --cache <file>"指令。这个指令一般用来处理意外加入文件到跟踪列表中的情况。
+如果想让git忽略对某些文件的跟踪，那么就建立一个.gitignore文件(注意.gitignore和.git是同级的，.git并不包含.gitignore)。将需要忽略的文件或者目录名写入。
